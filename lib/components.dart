@@ -14,6 +14,7 @@ class _ComponentsPageState extends State<ComponentsPage> {
   double _slider = 40;
   int _seg = 0;
   String _txt = '';
+  // ignore: unused_field
   String? _drop = 'A';
 
   void _showAlert() {
