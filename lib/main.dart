@@ -1,8 +1,15 @@
 import 'package:flutter/material.dart';
-import 'components.dart';
-import 'theme.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
+import 'welcome.dart';
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+
   runApp(const MyApp());
 }
 
@@ -12,19 +19,27 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
-
+      title: 'Firebase App',
       theme: ThemeData(
-        colorScheme: MaterialTheme.lightScheme(),
-        useMaterial3: true,
+        primarySwatch: Colors.indigo,
       ),
+      home: const HomePage(),
+    );
+  }
+}
 
-      darkTheme: ThemeData(
-        colorScheme: MaterialTheme.darkScheme(),
-        useMaterial3: true,
+class HomePage extends StatelessWidget {
+  const HomePage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text("Home"),
       ),
-
-      home: const ComponentsPage(),
+      body: const Center(
+        child: WelcomeMessage(),
+      ),
     );
   }
 }
